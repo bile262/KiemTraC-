@@ -1,0 +1,12 @@
+E:\.Net Frame\Baitap\KiemTra\KiemTra\bin\Debug\KiemTra.exe.config
+E:\.Net Frame\Baitap\KiemTra\KiemTra\bin\Debug\KiemTra.exe
+E:\.Net Frame\Baitap\KiemTra\KiemTra\bin\Debug\KiemTra.pdb
+E:\.Net Frame\Baitap\KiemTra\KiemTra\obj\Debug\KiemTra.csprojAssemblyReference.cache
+E:\.Net Frame\Baitap\KiemTra\KiemTra\obj\Debug\KiemTra.Form1.resources
+E:\.Net Frame\Baitap\KiemTra\KiemTra\obj\Debug\KiemTra.Properties.Resources.resources
+E:\.Net Frame\Baitap\KiemTra\KiemTra\obj\Debug\KiemTra.csproj.GenerateResource.cache
+E:\.Net Frame\Baitap\KiemTra\KiemTra\obj\Debug\KiemTra.csproj.CoreCompileInputs.cache
+E:\.Net Frame\Baitap\KiemTra\KiemTra\obj\Debug\KiemTra.exe
+E:\.Net Frame\Baitap\KiemTra\KiemTra\obj\Debug\KiemTra.pdb
+E:\.Net Frame\Baitap\KiemTra\KiemTra\bin\Debug\Data\NhomDanhBa.data
+E:\.Net Frame\Baitap\KiemTra\KiemTra\bin\Debug\Data\ChiTietDanhBa.data
