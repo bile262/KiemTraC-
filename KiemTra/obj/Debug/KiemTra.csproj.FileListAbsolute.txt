@@ -10,3 +10,5 @@ E:\.Net Frame\Baitap\KiemTra\KiemTra\obj\Debug\KiemTra.exe
 E:\.Net Frame\Baitap\KiemTra\KiemTra\obj\Debug\KiemTra.pdb
 E:\.Net Frame\Baitap\KiemTra\KiemTra\bin\Debug\Data\NhomDanhBa.data
 E:\.Net Frame\Baitap\KiemTra\KiemTra\bin\Debug\Data\ChiTietDanhBa.data
+E:\.Net Frame\Baitap\KiemTra\KiemTra\obj\Debug\KiemTra.ThemNhom.resources
+E:\.Net Frame\Baitap\KiemTra\KiemTra\obj\Debug\KiemTra.ThemLienLac.resources

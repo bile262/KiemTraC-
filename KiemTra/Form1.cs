@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,21 +30,101 @@ namespace KiemTra
             dvg1.DataSource = bds1;
             
         }
-         
 
-        private void Label2_Click(object sender, EventArgs e)
+        private void ToolStripButton1_Click(object sender, EventArgs e)
         {
-
+            var f = new ThemNhom();
+            f.ShowDialog();
         }
 
-        private void Dvg1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void ToolStripButton2_Click(object sender, EventArgs e)
+        {
+            if(MessageBox.Show("Bạn có thực sự muốn xóa nhóm này?","Thông báo!",MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning)== System.Windows.Forms.DialogResult.OK)
+            {
+                var nhom = (NhómDanhBa)bds1.Current;
+                string t =dvg1.CurrentCell.RowIndex.ToString();
+
+                NhómDanhBa.Remove(pathDataNhom,t);
+                bds1.RemoveCurrent();
+
+
+                MessageBox.Show("Đã xóa dữ liệu có tên là: " + nhom.TenNhom, "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+           
+        }
+
+        private void ToolStripButton3_Click(object sender, EventArgs e)
+        {
+            var f = new ThemLienLac();
+            f.ShowDialog();
+        }
+
+        
+
+        private void Dvg1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var nhomdanhba = (NhómDanhBa)bds1.Current;
             chitietdanhba = ChiTietDanhBa.GetListFromFile(pathDataChitiet, nhomdanhba.TenNhom);
             dvg2.AutoGenerateColumns = false;
             bds2.DataSource = chitietdanhba;
             dvg2.DataSource = bds2;
+        }
 
+        private void Dvg2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var nhomdanhba = (NhómDanhBa)bds1.Current;
+            chitietdanhba = ChiTietDanhBa.GetListFromFile(pathDataChitiet, nhomdanhba.TenNhom);
+            dvg2.AutoGenerateColumns = false;
+            bds2.DataSource = chitietdanhba;
+            dvg2.DataSource = bds2;
+            var chitiet = (ChiTietDanhBa)bds2.Current;
+            label6.Text = chitiet.Tengoi;
+            label7.Text = chitiet.Diachi;
+            label8.Text = chitiet.Email;
+            label9.Text = chitiet.SDT;
+        }
+
+        private void ToolStripTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            string t = toolStripTextBox1.Text;
+            List<ChiTietDanhBa> ct = new List<ChiTietDanhBa>();
+            for(int i=0;i<chitietdanhba.Count;i++)
+            {
+                if((chitietdanhba[i].Tengoi.ToLower().Contains(t.ToLower())==true)||(chitietdanhba[i].Email.ToLower().Contains(t.ToLower()) == true)||
+                        (chitietdanhba[i].SDT.Contains(t.ToLower()) == true))
+                {
+                    ct.Add(new ChiTietDanhBa
+                    {
+                        Tengoi = chitietdanhba[i].Tengoi,
+                        TenNhom = chitietdanhba[i].TenNhom,
+                        Diachi = chitietdanhba[i].Diachi,
+                        Email = chitietdanhba[i].Email,
+                        SDT = chitietdanhba[i].SDT
+                    });
+                }
+            }
+            dvg2.DataSource = ct;
+        }
+
+        private void ToolStripButton4_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Bạn có thực sự muốn xóa liên lạc này ?", "Thông báo!", MessageBoxButtons.OKCancel,
+                MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK)
+            {
+                var nhomll = (ChiTietDanhBa)bds2.Current;
+                string t = dvg2.CurrentCell.RowIndex.ToString();
+
+                ChiTietDanhBa.Remove(pathDataChitiet, t);
+                bds2.RemoveCurrent();
+
+
+                MessageBox.Show("Đã xóa dữ liệu có tên là: " + nhomll.Tengoi, "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
         }
     }
 }

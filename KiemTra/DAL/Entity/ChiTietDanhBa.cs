@@ -35,5 +35,23 @@ namespace KiemTra.DAL.Entity
             }
             return ketQua;
         }
+        public static void Remove(string pathData, string t)
+        {
+            string strFilePath = pathData;
+            string strSearchText = t;
+            string strOldText;
+            string n = "";
+            StreamReader sr = File.OpenText(strFilePath);
+            while ((strOldText = sr.ReadLine()) != null)
+            {
+                if (!strOldText.Contains(strSearchText))
+                {
+                    n += strOldText + Environment.NewLine;
+                }
+            }
+            sr.Close();
+            File.WriteAllText(strFilePath, n);
+
+        }
     }
 }

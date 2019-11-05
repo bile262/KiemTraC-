@@ -9,6 +9,7 @@ namespace KiemTra.DAL.Entity
 {
     class NhómDanhBa
     { public string TenNhom { get; set; }
+        
         public static List<NhómDanhBa> GetListFromFile(string pathData)
         {
             var arrayLines = File.ReadAllLines(pathData);
@@ -24,6 +25,24 @@ namespace KiemTra.DAL.Entity
                     ketQua.Add(nhomdanhba);
             }
             return ketQua;
+        }
+        public static void Remove(string pathData, string t)
+        {
+            string strFilePath = pathData;
+            string strSearchText = t;
+            string strOldText;
+            string n = "";
+            StreamReader sr = File.OpenText(strFilePath);
+            while ((strOldText = sr.ReadLine()) != null)
+            {
+                if (!strOldText.Contains(strSearchText))
+                {
+                    n += strOldText + Environment.NewLine;
+                }
+            }
+            sr.Close();
+            File.WriteAllText(strFilePath, n);
+
         }
     }
 }
