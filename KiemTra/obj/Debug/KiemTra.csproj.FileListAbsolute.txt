@@ -12,3 +12,9 @@ E:\.Net Frame\Baitap\KiemTra\KiemTra\bin\Debug\Data\NhomDanhBa.data
 E:\.Net Frame\Baitap\KiemTra\KiemTra\bin\Debug\Data\ChiTietDanhBa.data
 E:\.Net Frame\Baitap\KiemTra\KiemTra\obj\Debug\KiemTra.ThemNhom.resources
 E:\.Net Frame\Baitap\KiemTra\KiemTra\obj\Debug\KiemTra.ThemLienLac.resources
+E:\.Net Frame\Baitap\KiemTra\KiemTra\bin\Debug\EntityFramework.dll
+E:\.Net Frame\Baitap\KiemTra\KiemTra\bin\Debug\EntityFramework.SqlServer.dll
+E:\.Net Frame\Baitap\KiemTra\KiemTra\bin\Debug\EntityFramework.xml
+E:\.Net Frame\Baitap\KiemTra\KiemTra\bin\Debug\EntityFramework.SqlServer.xml
+E:\.Net Frame\Baitap\KiemTra\KiemTra\obj\Debug\KiemTra.csproj.CopyComplete
+E:\.Net Frame\Baitap\KiemTra\KiemTra\obj\Debug\KiemTra.Migrations._123.resources

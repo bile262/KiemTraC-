@@ -25,16 +25,32 @@ namespace KiemTra
             pathDataChitiet= Application.StartupPath + @"\Data\ChiTietDanhBa.data";
             dvg1.AutoGenerateColumns = false;
             
-            nhomdanhba = NhómDanhBa.GetListFromFile(pathDataNhom);
+            nhomdanhba = NhómDanhBa.GetListFromDB();
             bds1.DataSource = nhomdanhba;
             dvg1.DataSource = bds1;
             
+            
+        }
+        public void Load()
+        {
+            dvg1.AutoGenerateColumns = false;
+
+            nhomdanhba = NhómDanhBa.GetListFromDB();
+            bds1.DataSource = nhomdanhba;
+            dvg1.DataSource = bds1;
+            var nhomdanhba1 = (NhómDanhBa)bds1.Current;
+            chitietdanhba = ChiTietDanhBa.GetListFromDB(nhomdanhba1.TenNhom);
+            dvg2.AutoGenerateColumns = false;
+            bds2.DataSource = chitietdanhba;
+            dvg2.DataSource = bds2;
         }
 
         private void ToolStripButton1_Click(object sender, EventArgs e)
         {
             var f = new ThemNhom();
             f.ShowDialog();
+            Load();
+
         }
 
         private void ToolStripButton2_Click(object sender, EventArgs e)
@@ -43,15 +59,11 @@ namespace KiemTra
                 MessageBoxIcon.Warning)== System.Windows.Forms.DialogResult.OK)
             {
                 var nhom = (NhómDanhBa)bds1.Current;
-                string t =dvg1.CurrentCell.RowIndex.ToString();
-
-                NhómDanhBa.Remove(pathDataNhom,t);
-                bds1.RemoveCurrent();
-
-
+                NhómDanhBa.Remove(nhom);
                 MessageBox.Show("Đã xóa dữ liệu có tên là: " + nhom.TenNhom, "Thông báo",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
+                Load();
             }
            
         }
@@ -60,6 +72,7 @@ namespace KiemTra
         {
             var f = new ThemLienLac();
             f.ShowDialog();
+            Load();
         }
 
         
@@ -67,7 +80,7 @@ namespace KiemTra
         private void Dvg1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var nhomdanhba = (NhómDanhBa)bds1.Current;
-            chitietdanhba = ChiTietDanhBa.GetListFromFile(pathDataChitiet, nhomdanhba.TenNhom);
+            chitietdanhba = ChiTietDanhBa.GetListFromDB(nhomdanhba.TenNhom);
             dvg2.AutoGenerateColumns = false;
             bds2.DataSource = chitietdanhba;
             dvg2.DataSource = bds2;
@@ -76,7 +89,7 @@ namespace KiemTra
         private void Dvg2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var nhomdanhba = (NhómDanhBa)bds1.Current;
-            chitietdanhba = ChiTietDanhBa.GetListFromFile(pathDataChitiet, nhomdanhba.TenNhom);
+            chitietdanhba = ChiTietDanhBa.GetListFromDB(nhomdanhba.TenNhom); 
             dvg2.AutoGenerateColumns = false;
             bds2.DataSource = chitietdanhba;
             dvg2.DataSource = bds2;
@@ -115,10 +128,11 @@ namespace KiemTra
                 MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.OK)
             {
                 var nhomll = (ChiTietDanhBa)bds2.Current;
-                string t = dvg2.CurrentCell.RowIndex.ToString();
 
-                ChiTietDanhBa.Remove(pathDataChitiet, t);
-                bds2.RemoveCurrent();
+
+                ChiTietDanhBa.Remove(nhomll);
+                Load();
+    
 
 
                 MessageBox.Show("Đã xóa dữ liệu có tên là: " + nhomll.Tengoi, "Thông báo",

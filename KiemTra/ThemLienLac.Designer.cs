@@ -59,6 +59,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Xóa";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // button2
             // 
@@ -72,6 +73,8 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.AutoCompleteCustomSource.AddRange(new string[] {
+            "khdkf"});
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(193, 12);
             this.comboBox1.Name = "comboBox1";

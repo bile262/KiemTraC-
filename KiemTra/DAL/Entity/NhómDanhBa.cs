@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,8 @@ using System.Threading.Tasks;
 namespace KiemTra.DAL.Entity
 {
     class NhómDanhBa
-    { public string TenNhom { get; set; }
+    {   [Key]
+        public string TenNhom { get; set; }
         
         public static List<NhómDanhBa> GetListFromFile(string pathData)
         {
@@ -26,22 +28,26 @@ namespace KiemTra.DAL.Entity
             }
             return ketQua;
         }
-        public static void Remove(string pathData, string t)
+        public static void Remove(NhómDanhBa nhom)
         {
-            string strFilePath = pathData;
-            string strSearchText = t;
-            string strOldText;
-            string n = "";
-            StreamReader sr = File.OpenText(strFilePath);
-            while ((strOldText = sr.ReadLine()) != null)
+            var db = new KiemTraDBContext();
+            var ojbSV = db.NhomDanhBaDbSet.Where(e => e.TenNhom == nhom.TenNhom).FirstOrDefault();
+            if (ojbSV != null)
             {
-                if (!strOldText.Contains(strSearchText))
-                {
-                    n += strOldText + Environment.NewLine;
-                }
+                db.NhomDanhBaDbSet.Remove(ojbSV);
+               
             }
-            sr.Close();
-            File.WriteAllText(strFilePath, n);
+            db.SaveChanges();
+        }
+        public static List<NhómDanhBa> GetListFromDB()
+        {
+            return new KiemTraDBContext().NhomDanhBaDbSet.ToList();
+        }
+        public static void Add(NhómDanhBa nhom)
+        {
+            var db = new KiemTraDBContext();
+            db.NhomDanhBaDbSet.Add(nhom);
+            db.SaveChanges();
 
         }
     }
